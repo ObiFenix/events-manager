@@ -1,0 +1,94 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ .logout {
+   border: 1px solid #cc29cc;
+   border-radius: 2rem;
+   width: 4rem;
+ }
+ .brand-logo {
+     font-family: 'Days One', sans-serif;
+ }
+
+ .dropdown-content li>a, .dropdown-content li>span {
+     font-size: 16px;
+     background-color: #020000;
+     color: #9e9e9edb;
+     display: block;
+     line-height: 22px;
+     padding: 14px 16px;
+ }
+ .dropdown-content li>a:hover, .dropdown-content li>span:hover {
+     background-color: #cc29cc;
+     color: white;
+ }
+ .select-wrapper input.select-dropdown:focus {
+     color: #cc29cc !important;
+ }
+
+/* label focus color */
+.input-field input[type=text] {
+   // border-bottom: 1px solid #222;
+   box-shadow: 0 1px 0 0 #000;
+ }
+/* label focus color */
+.input-field input[type=text]:focus + label {
+   color: #cc29cc !important;
+ }
+/* label underline focus color */
+.input-field input[type=text]:focus {
+   // border-bottom: 1px solid #222;
+   box-shadow: 0 1px 0 0 #cc29cc !important;
+ }
+/* valid color */
+.input-field {
+ input[type=text]:focus {
+   color: #cc29cc;
+ }
+ input[type=text].valid {
+   border-bottom: 1px solid #cc29cc;
+   box-shadow: 0 1px 0 0 #cc29cc;
+ }
+ label:active {
+   color: lime !important;
+ }
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #cc29cc;
+}
+
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #cc29cc;
+    box-shadow: 0 1px 0 0 #cc29cc;
+}
+
+
+input.valid:not([type]), input.valid:not([type]):focus,
+input.valid[type=text]:not(.browser-default),
+input.valid[type=text]:not(.browser-default):focus,
+input.valid[type=password]:not(.browser-default),
+input.valid[type=password]:not(.browser-default):focus,
+input.valid[type=email]:not(.browser-default) {
+    border-bottom: 1px solid #cc29cc !important;
+    -webkit-box-shadow: 0 1px 0 0 #cc29cc !important;
+    box-shadow: 0 1px 0 0 #cc29cc !important;
+}

@@ -1,0 +1,23 @@
+<!-- USER LOGIN & REGISTRATION PAGE COMPONENT -->
+
+<!-- Application Banner -->
+<div class="bg-image">
+
+  <!-- Error Handler -->
+  <% if flash[:errors] %>
+    <div class="container-logreg" role="alert">
+      <% flash[:errors].each do |e| %>
+        <p id="errors" class="alert alert-danger"><%= e %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <!-- Login & Registration -->
+  <div class="container-logreg">
+      <% if notice %><p id="notice"><%= notice %></p><% end %>
+      <% if session['form'] == 'login' %><%= render "login_form" %>
+      <% else %>                         <%= render "register_form" %>
+      <% end %>
+  </div>
+
+</div>

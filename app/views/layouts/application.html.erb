@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>JTF Event Mng</title>
+
+    <!-- Required CSS Files -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Days+One|Anton|Cabin|Caveat|Cookie|Fredoka+One|Great+Vibes|Indie+Flower|Kaushan+Script|Lobster|Merriweather+Sans|Mirza|Muli|Poiret+One|Satisfy|Ubuntu+Condensed|Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'main.js', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <style>
+      .scrollbar{
+        height: 200px;
+        overflow-y: scroll;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Navbar Section -->
+    <nav class="dark">
+      <% unless current_user %>
+        <div class="nav-wrapper">
+          <a href="/"><h4 class="_logo">Events<span>MANAGER</span></h2></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <% if session["form"] == "login"%>
+            <li><a href="/sessions/sw">Register</a></li><% else %>
+            <li><a href="/sessions/sw">Login</a></li><% end %>
+          </ul>
+        </div>
+      <% else %>
+        <a href="/events"><h4 class="_logo">Events<span>MANAGER</span></h2></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/users/<%= current_user.id %>/edit" class="grey-text"><span class="light-blue-text">My</span>Profile</a>
+          <li><a href="/events/new">Add New Event</a></li>
+          <li><%= link_to "Log out", "/logout", data: { method: :delete, confirm: "Are you sure?"} %></li>
+        </ul>
+      <% end %>
+    </nav>
+
+    <%= yield %>
+
+    <!-- Required JS Files -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+  </body>
+</html>

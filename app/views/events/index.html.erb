@@ -1,0 +1,87 @@
+<!-- Banner -->
+<div class="bg-image1">
+
+  <!-- Dashboard Container -->
+  <div class="container">
+
+    <% if notice %><p id="notice" class="white-text"><%= notice %></p><% end %>
+    <h1>Welcome, <span class="white-text"><%= current_user.first_name %></span>!</h1>
+    <h4 class="se">Here are some events in your state: </h4>
+    <table class="table table-striped table-bordered table-sm" id="dtTable1" cellspacing="0" >
+        <thead>
+            <tr>
+                <th class="th-sm">Name<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                <th class="th-sm">Date<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                <th class="th-sm">City<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                <th class="th-sm">Host<i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% if @events %>
+            <% @events.each do |event| %>
+            <tr class="trbody">
+                <td><a class="purple-text text-lighten-2 bold" href="/events/<%=event.id%>"><%=event.name%></a></td>
+                <td><%=event.date.strftime("%B %d, %Y")%></td>
+                <td><%=event.city%></td>
+                <td><%=event.user.first_name%></td>
+                <td>
+                    <% if event.user_id == current_user.id %>
+                        <a class="btn sn edit" href="/events/<%= event.id %>/edit">Edit</a>
+                        <a class="btn sn delete ret-text" href="/events/<%= event.id %>" data-method="delete">Delete</a>
+                    <% elsif @attend.where('user_id = ? AND event_id = ?', current_user.id, event.id).count > 0 %>
+                        <span class="purple-text text-lighten-2" style="margin: 0rem 1rem">Joined</span>
+                        <a class="btn sn delete red-text" href="/attends/<%= current_user.id %>/events/<%=event.id%>/destroy">Cancel</a>
+                    <% else %>
+                        <a class="btn sn join text-info" href="/attends/<%= current_user.id %>/events/<%=event.id%>">Join</a>
+                    <% end %>
+                </td>
+            </tr>
+            <% end %>
+        <% end %>
+        </tbody>
+    </table>
+    <h4 class="se mt-5">Here are some events in other states: </h4>
+    <table class="table table-striped table-bordered table-sm" id="dtTable2" cellspacing="0" >
+        <thead>
+            <tr>
+                <th class="th-sm">Name  <i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                <th class="th-sm">Date  <i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                <th class="th-sm">City  <i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                <th class="th-sm">State <i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                <th class="th-sm">Host  <i class="fa fa-sort float-right" aria-hidden="true"></i></th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <% if @otherevents %>
+            <% @otherevents.each do |event| %>
+            <tr class="trbody">
+                <td><a class="purple-text text-lighten-2" href="/events/<%=event.id%>"><%=event.name%></a></td>
+                <td><%=event.date.strftime("%B %d, %Y")%></td>
+                <td><%=event.city%></td>
+                <td><%=event.state%></td>
+                <td><%=event.user.first_name%></td>
+                <td>
+                    <% if event.user_id == current_user.id %>
+                        <a class="btn sn edit" href="/events/<%= event.id %>/edit">Edit</a>
+                        <a class="btn sn delete" href="/events/<%= event.id %>" data-method="delete">Delete</a>
+                    <% elsif @attend.where('user_id = ? AND event_id = ?', current_user.id, event.id).count > 0 %>
+                        <span class="purple-text text-lighten-2" style="margin: 0rem 1rem">Joined</span>
+                        <a class="btn sn delete" href="/attends/<%= current_user.id %>/events/<%=event.id%>/destroy">Cancel</a>
+                    <% else %>
+                        <a class="btn sn join" href="/attends/<%= current_user.id %>/events/<%=event.id%>">Join</a>
+                    <% end %>
+                </td>
+            </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+
+  <a href="/events/new" class="sn btn" style="margin:0.5rem 6.2%; width:10rem;">Add An Event</a>
+
+
+</div>
