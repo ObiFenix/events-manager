@@ -64,7 +64,7 @@
                 <td><%=event.state%></td>
                 <td><%=event.user.first_name%></td>
                 <td>
-                    <% if event.user_id == current_user.id %>
+                    <% if event.user.id === current_user.id %>
                         <a class="btn sn edit" href="/events/<%= event.id %>/edit">Edit</a>
                         <a class="btn sn delete" href="/events/<%= event.id %>" data-method="delete">Delete</a>
                     <% elsif @attend.where('user_id = ? AND event_id = ?', current_user.id, event.id).count > 0 %>
@@ -81,7 +81,8 @@
     </table>
   </div>
 
-  <a href="/events/new" class="sn btn" style="margin:0.5rem 6.2%; width:10rem;">Add An Event</a>
-
+  <div class="container" style="background: transparent!">
+    <a href="/events/new" class="sn btn" style="margin:0.5rem auto; width:10rem;">Add An Event</a>
+  </div>
 
 </div>

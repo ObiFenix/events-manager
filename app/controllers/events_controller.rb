@@ -29,6 +29,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @new_event.valid?
         # format.html { redirect_to dojo_student_url, notice: 'Student was successfully created.' }
+	session[:event_id] = @new_event.id
         format.html { redirect_to events_path, notice: 'A new event has successfully been created!' }
         format.json { render :show, status: :created, location: @new_event }
       else

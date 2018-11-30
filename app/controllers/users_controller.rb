@@ -22,11 +22,13 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @new_user.valid?
         # format.html { redirect_to dojo_student_url, notice: 'Student was successfully created.' }
-        format.html { redirect_to "/events", notice: 'User was successfully registered!' }
+	session[:user_id] = @new_user.id
+	session[:form] = "login"
+        format.html { redirect_to "/", notice: 'User was successfully registered!' }
         format.json { render :show, status: :created, location: @new_user }
       else
         flash[:errors] = @new_user.errors.full_messages
-        format.html { redirect_to "/" }
+        format.html { redirect_to :back }
         format.json { render json: @new_user.errors, status: :unprocessable_entity }
       end
     end
